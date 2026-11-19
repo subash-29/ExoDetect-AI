@@ -1,0 +1,95 @@
+{
+    "model": "Reduced Feature CatBoost",
+    "features_used": [
+        "koi_period",
+        "koi_duration",
+        "koi_depth",
+        "koi_prad",
+        "koi_insol",
+        "koi_teq",
+        "koi_steff",
+        "koi_slogg",
+        "koi_srad"
+    ],
+    "feature_mapping": {
+        "koi_period": "pl_orbper",
+        "koi_duration": "pl_trandurh",
+        "koi_depth": "pl_trandep",
+        "koi_prad": "pl_rade",
+        "koi_insol": "pl_insol",
+        "koi_teq": "pl_eqt",
+        "koi_steff": "st_teff",
+        "koi_slogg": "st_logg",
+        "koi_srad": "st_rad"
+    },
+    "training_dataset": "Kepler",
+    "external_validation_dataset": "TESS",
+    "training_samples": 7650,
+    "kepler_test_samples": 1914,
+    "tess_validation_samples": 6972,
+    "excluded_tess_samples": 1203,
+    "metrics": {
+        "accuracy": 0.28284566838783703,
+        "balanced_accuracy": 0.5187423868993369,
+        "macro_f1": 0.29306552363283167
+    },
+    "classification_report": {
+        "CANDIDATE": {
+            "precision": 0.7541589648798521,
+            "recall": 0.08443708609271523,
+            "f1-score": 0.15187046342825236,
+            "support": 4832.0
+        },
+        "CONFIRMED": {
+            "precision": 0.1838604788649128,
+            "recall": 0.7576126674786845,
+            "f1-score": 0.29590865842055186,
+            "support": 821.0
+        },
+        "FALSE POSITIVE": {
+            "precision": 0.3090551181102362,
+            "recall": 0.714177407126611,
+            "f1-score": 0.43141744904969087,
+            "support": 1319.0
+        },
+        "accuracy": 0.28284566838783703,
+        "macro avg": {
+            "precision": 0.41569152061833375,
+            "recall": 0.5187423868993369,
+            "f1-score": 0.29306552363283167,
+            "support": 6972.0
+        },
+        "weighted avg": {
+            "precision": 0.6027953632006512,
+            "recall": 0.28284566838783703,
+            "f1-score": 0.22171811576952535,
+            "support": 6972.0
+        }
+    },
+    "confusion_matrix": [
+        [
+            408,
+            2463,
+            1961
+        ],
+        [
+            54,
+            622,
+            145
+        ],
+        [
+            79,
+            298,
+            942
+        ]
+    ],
+    "class_order": [
+        "CANDIDATE",
+        "CONFIRMED",
+        "FALSE POSITIVE"
+    ],
+    "domain_classifier": {
+        "accuracy": 0.9042667622803873,
+        "roc_auc": 0.9647192525056181
+    }
+}

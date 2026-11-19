@@ -1,0 +1,25 @@
+{
+    "experiment": "Feature Ablation",
+    "baseline_model": "CatBoost",
+    "baseline_features": 31,
+    "ablated_model": "CatBoost without koi_model_snr",
+    "ablated_features": 30,
+    "removed_feature": "koi_model_snr",
+    "hyperparameters": {
+        "iterations": 500,
+        "depth": 8,
+        "learning_rate": 0.05,
+        "l2_leaf_reg": 5,
+        "loss_function": "MultiClass",
+        "random_seed": 42
+    },
+    "metrics": {
+        "accuracy": 0.7737722048066875,
+        "balanced_accuracy": 0.7185414753596572,
+        "macro_precision": 0.7297486090034567,
+        "macro_recall": 0.7185414753596572,
+        "macro_f1": 0.7198082602100474
+    },
+    "baseline_macro_f1": 0.7527,
+    "macro_f1_reduction": 0.032891739789952634
+}

@@ -1,0 +1,44 @@
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environments
+venv/
+.venv/
+env/
+
+# Jupyter temporary files
+.ipynb_checkpoints/
+
+# Environment variables and secrets
+.env
+.env.*
+!.env.example
+
+# Operating system files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDE settings
+.vscode/
+.idea/
+
+# Logs and temporary files
+logs/
+*.log
+*.tmp
+
+# Raw NASA datasets
+data/raw/**/*.csv
+
+# Temporary model training files
+*.pth.tmp
+*.pkl.tmp
+
+# Streamlit cache
+.streamlit/secrets.toml
+
+# Microsoft Office temporary files
+~$*

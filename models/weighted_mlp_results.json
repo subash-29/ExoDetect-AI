@@ -1,0 +1,29 @@
+{
+    "model": "Weighted MLP",
+    "test_samples": 1914,
+    "accuracy": 0.6948798328108673,
+    "macro_precision": 0.6658285067085052,
+    "macro_recall": 0.6772543617998164,
+    "macro_f1": 0.6640889556085333,
+    "balanced_accuracy": 0.6772543617998164,
+    "training_epochs": 27,
+    "training_samples": 7650,
+    "features": 31,
+    "confusion_matrix": [
+        [
+            213,
+            114,
+            69
+        ],
+        [
+            98,
+            433,
+            19
+        ],
+        [
+            224,
+            60,
+            684
+        ]
+    ]
+}
