@@ -33,6 +33,9 @@ logs/
 # Raw NASA datasets
 data/raw/**/*.csv
 
+# Include Kepler dataset for Streamlit Cloud
+!data/raw/kepler/cumulative_2026.11.13_03.57.53.csv
+
 # Temporary model training files
 *.pth.tmp
 *.pkl.tmp
