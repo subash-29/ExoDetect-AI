@@ -1,33 +1,36 @@
 # 🪐 ExoDetect AI
-### An Explainable Machine Learning System for Exoplanet Classification
+### Explainable Machine Learning for NASA Exoplanet Classification
 
-ExoDetect AI is an end-to-end machine learning project that uses astronomical catalogue data from NASA's Kepler mission to classify potential exoplanet observations into three categories:
+[**Live Demo**](https://exoplanetdetect-ai.streamlit.app/) · [**GitHub Repository**](https://github.com/subash-29/ExoDetect-AI)
 
-- **CONFIRMED** — Observations classified as confirmed exoplanets.
-- **CANDIDATE** — Observations classified as potential exoplanet candidates.
+ExoDetect AI is an end-to-end machine learning project that investigates the classification of astronomical observations using NASA's Kepler and TESS mission catalogue data.
+
+The system classifies Kepler observations into three categories:
+
+- **CONFIRMED** — Observations labelled as confirmed exoplanets.
+- **CANDIDATE** — Potential exoplanet candidates.
 - **FALSE POSITIVE** — Observations classified as false positive detections.
 
-The project combines machine learning, deep learning, explainable AI, cross-mission validation and an interactive Streamlit application.
+The project combines classical machine learning, deep learning, explainable AI, cross-mission validation and an interactive Streamlit application.
 
 ---
 
-## 🌌 Project Highlights
+## 🌌 Key Features
 
-- NASA Kepler and TESS catalogue datasets.
+- NASA Kepler and TESS catalogue data analysis.
 - Exploratory Data Analysis and feature engineering.
 - Leakage-aware preprocessing and group-aware validation.
-- CatBoost and Deep Learning model development.
+- CatBoost and weighted Deep Learning MLP experiments.
 - SHAP-based model explainability.
 - Feature ablation experiments.
 - Cross-mission validation using TESS observations.
 - Domain shift analysis.
-- Interactive Streamlit prediction dashboard.
+- Interactive prediction dashboard.
+- Cloud deployment using Streamlit Community Cloud.
 
----
+## 🧠 Model Performance
 
-## 🧠 Machine Learning Models
-
-Two primary approaches were investigated:
+Two primary modelling approaches were evaluated.
 
 | Model | Accuracy | Macro F1 |
 |---|---:|---:|
@@ -36,34 +39,34 @@ Two primary approaches were investigated:
 
 ### Selected Model: CatBoost
 
-CatBoost was selected as the primary prediction model because it achieved better overall classification performance.
+CatBoost was selected as the primary prediction model because it achieved stronger classification performance.
 
-**Final Kepler test performance:**
+**Final Kepler test results:**
 
-- Accuracy: 79.47%
-- Balanced Accuracy: 74.97%
-- Macro Precision: 76.16%
-- Macro Recall: 74.97%
-- Macro F1: 75.27%
+| Metric | Score |
+|---|---:|
+| Accuracy | 79.47% |
+| Balanced Accuracy | 74.97% |
+| Macro Precision | 76.16% |
+| Macro Recall | 74.97% |
+| Macro F1 | 75.27% |
 
 The model uses 31 astronomical input features.
 
----
-
 ## 🔬 Explainable AI
 
-ExoDetect AI incorporates model explainability to investigate which astronomical parameters influence classification.
+ExoDetect AI uses explainability techniques to investigate which astronomical parameters influence model predictions.
 
 Implemented techniques:
 
-1. CatBoost Feature Importance
-2. SHAP Global Feature Importance
-3. Class-wise SHAP Analysis
-4. Feature Ablation Experiment
+1. CatBoost feature importance.
+2. SHAP global feature importance.
+3. Class-wise SHAP analysis.
+4. Feature ablation experiments.
 
-The feature ablation experiment evaluated the effect of removing `koi_model_snr`.
+### Feature Ablation: Signal-to-Noise Ratio
 
-Results:
+The experiment evaluated the impact of removing `koi_model_snr`.
 
 | Metric | Original Model | Without SNR |
 |---|---:|---:|
@@ -71,17 +74,13 @@ Results:
 | Balanced Accuracy | 74.97% | 71.85% |
 | Macro F1 | 75.27% | 71.98% |
 
-Removing the signal-to-noise feature reduced Macro F1 by approximately 3.29 percentage points.
+Removing this feature reduced Macro F1 by approximately 3.29 percentage points.
 
----
-
-## 🛰️ Cross-Mission Validation
+## 🛰️ Cross-Mission Validation: Kepler vs TESS
 
 An important experiment investigated whether a model trained using Kepler observations could generalize to TESS observations.
 
 The experiment used nine shared astronomical features and a reduced-feature CatBoost model.
-
-### Kepler vs TESS Results
 
 | Metric | Kepler | TESS |
 |---|---:|---:|
@@ -89,48 +88,51 @@ The experiment used nine shared astronomical features and a reduced-feature CatB
 | Balanced Accuracy | 69.23% | 51.87% |
 | Macro F1 | 69.01% | 29.31% |
 
-The substantial performance degradation demonstrates the difficulty of transferring a machine learning model between different astronomical missions.
+The performance degradation highlights the difficulty of transferring a machine learning model between different astronomical missions.
 
 ### Domain Shift Analysis
 
 A Random Forest domain classifier was trained to distinguish Kepler and TESS observations.
 
-Results:
+- Domain classification accuracy: **90.43%**
+- Domain classification ROC-AUC: **96.47%**
 
-- Domain Classification Accuracy: 90.43%
-- Domain Classification ROC-AUC: 96.47%
+All nine shared features showed statistically significant distribution differences according to Kolmogorov–Smirnov tests.
 
-All nine shared features showed statistically significant distribution differences according to the Kolmogorov-Smirnov tests.
-
-### Important Experimental Limitations
+### Experimental Limitations
 
 - TESS dispositions were approximately mapped to Kepler classes.
 - 1,203 TESS observations were excluded because their dispositions could not be mapped confidently.
-- Cross-mission validation used nine shared catalogue features rather than the original 31 features.
-- The experiment uses catalogue parameters, not raw photometric light curves.
-- Domain shift is a potential contributor to performance degradation, but it does not establish the only cause.
-
----
+- Cross-mission validation used nine shared catalogue features instead of the original 31 features.
+- The experiment used catalogue parameters, not raw photometric light curves.
+- Domain shift may contribute to performance degradation, but it does not establish the only cause.
 
 ## 🖥️ Interactive Application
 
-The project includes a Streamlit application with four main pages.
+**Live application:** https://exoplanetdetect-ai.streamlit.app/
 
-### 1. Dashboard
-Overview of the project, model status and performance metrics.
+The application contains four pages:
 
-### 2. Exoplanet Prediction
-Enter astronomical parameters manually or load an actual Kepler observation to generate predictions.
+| Page | Functionality |
+|---|---|
+| Dashboard | Project overview and model performance |
+| Prediction | Manual feature input and actual Kepler observation loading |
+| Explainability | SHAP analysis and feature importance |
+| Mission Validation | Kepler–TESS comparison and domain shift analysis |
 
-### 3. Model Explainability
-Explore feature importance, SHAP analysis and feature ablation results.
+## 🏗️ Project Workflow
 
-### 4. Mission Validation
-Explore Kepler vs TESS performance, confusion matrices and domain shift analysis.
+1. Collect and understand NASA catalogue datasets.
+2. Perform exploratory data analysis.
+3. Preprocess features and prepare group-aware train/test splits.
+4. Train and evaluate machine learning models.
+5. Experiment with deep learning.
+6. Validate using TESS observations.
+7. Perform SHAP analysis and feature ablation.
+8. Finalize the prediction pipeline.
+9. Build and deploy the Streamlit application.
 
----
-
-## 🗂️ Project Structure
+## 🗂️ Repository Structure
 
 ```text
 NASAexoplanet/
@@ -150,13 +152,14 @@ NASAexoplanet/
 │   ├── raw/
 │   │   ├── kepler/
 │   │   └── tess/
-│   └── processed/
+│   ├── processed/
+│   └── lightcurves/
 │
 ├── models/
 │
 ├── notebooks/
 │   ├── 01_data_collection.ipynb
-│   ├── 02_eda.ipynb
+│   ├── 01_dataset_understanding.ipynb
 │   ├── 03_preprocessing.ipynb
 │   ├── 04_machine_learning.ipynb
 │   ├── 05_deep_learning.ipynb
@@ -164,93 +167,86 @@ NASAexoplanet/
 │   └── 07_model_finalization_explainability.ipynb
 │
 ├── src/
-│
 ├── requirements.txt
 └── README.md
 ```
-
----
 
 ## ⚙️ Installation and Setup
 
 ### Prerequisites
 
-- Python 3.10 or later
-- pip
+- Python 3.12
 - Git
+- pip
 
-### Step 1: Clone the Repository
+### 1. Clone the repository
 
 ```bash
-git clone YOUR_GITHUB_REPOSITORY_URL
-cd NASAexoplanet
+git clone https://github.com/subash-29/ExoDetect-AI.git
+cd ExoDetect-AI
 ```
 
-### Step 2: Create a Virtual Environment
+### 2. Create a virtual environment
 
 ```bash
 python -m venv venv
 ```
 
-Activate it on Windows:
+Activate on Windows:
 
 ```bash
 venv\Scripts\activate
 ```
 
-### Step 3: Install Dependencies
+Activate on Linux/macOS:
+
+```bash
+source venv/bin/activate
+```
+
+### 3. Install dependencies
 
 ```bash
 pip install -r requirements.txt
 ```
 
-### Step 4: Prepare the Data and Model Files
+### 4. Verify project data and model artifacts
 
-Place the required NASA catalogue datasets inside their respective directories:
+Ensure the required model artifacts are available in `models/` and the Kepler catalogue is available in:
 
 ```text
 data/raw/kepler/
-data/raw/tess/
 ```
 
-The trained model and supporting artifacts must also be available in the `models/` directory.
+The TESS validation outputs and other processed artifacts are maintained under `data/processed/` and `models/`.
 
-### Step 5: Run the Application
+### 5. Run the application
 
 ```bash
 streamlit run app/app.py
 ```
 
-The application will open in your browser.
-
----
-
 ## 🛠️ Technology Stack
 
 | Category | Technologies |
 |---|---|
-| Programming Language | Python |
+| Programming | Python |
 | Data Processing | Pandas, NumPy |
 | Machine Learning | Scikit-learn, CatBoost |
 | Deep Learning | PyTorch |
-| Explainable AI | SHAP, CatBoost SHAP Values |
+| Explainable AI | SHAP |
 | Visualization | Plotly, Matplotlib |
 | Application | Streamlit |
 | Development | Jupyter Notebook |
 
----
-
 ## 🔭 Future Improvements
 
 - Incorporate raw astronomical photometric light curves.
-- Experiment with CNN and Transformer-based architectures.
+- Experiment with CNN and Transformer architectures.
 - Investigate domain adaptation techniques.
 - Improve cross-mission generalization.
 - Evaluate probability calibration.
 - Explore additional NASA mission datasets.
-- Develop a more robust deployment pipeline.
-
----
 
 ## ⚠️ Scientific Disclaimer
 
@@ -258,10 +254,8 @@ ExoDetect AI is an experimental machine learning system for astronomical catalog
 
 Its predictions are not independent astronomical confirmations or discoveries. Model outputs should be interpreted alongside scientific validation and the limitations of the underlying datasets.
 
----
-
 ## 👨‍💻 Project
 
 **ExoDetect AI — NASA Exoplanet Classification Using Machine Learning**
 
-An end-to-end exploration of machine learning, explainable AI and cross-mission generalization in exoplanet research.
+An end-to-end exploration of machine learning, deep learning, explainable AI and cross-mission generalization in exoplanet research.
