@@ -415,6 +415,7 @@ example_df = load_kepler_examples()
 
 col1, col2 = st.columns([2, 1])
 
+
 with col1:
 
     if example_df is not None:
@@ -441,14 +442,12 @@ with col1:
                     else float(median_values[feature])
                 )
 
-            st.session_state["loaded_sample"] = True
-
-            st.success("Kepler observation loaded successfully.")
-
     else:
-
-        st.warning("Kepler raw dataset was not found.")
-
+        st.info(
+            "Kepler sample loading is unavailable in the cloud deployment. "
+            "You can still enter feature values manually or use the default "
+            "median values to make predictions."
+        )
 with col2:
 
     if st.button("↩ Reset All Parameters", use_container_width=True):
