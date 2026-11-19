@@ -326,6 +326,10 @@ sections = {
 def load_kepler_examples():
 
     data_directory = PROJECT_ROOT / "data" / "raw" / "kepler"
+    print("PROJECT ROOT:", PROJECT_ROOT)
+    print("DATA DIRECTORY:", data_directory)
+    print("DIRECTORY EXISTS:", data_directory.exists())
+    print("CSV FILES FOUND:", list(data_directory.glob("*.csv")))
 
     files = list(data_directory.glob("*.csv"))
 
